@@ -29,6 +29,7 @@ public class NioTimeClient implements Runnable {
         this.host = host;
         this.port = port;
         try {
+            //初始化资源
             selector = Selector.open();
             socketChannel = SocketChannel.open();
             socketChannel.configureBlocking(false);
@@ -39,6 +40,7 @@ public class NioTimeClient implements Runnable {
 
     public void run() {
         try {
+            //进行连接服务端
             doConnect();
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,18 +74,25 @@ public class NioTimeClient implements Runnable {
         }
     }
 
+    //往服务端写入数据
     private void handInput(SelectionKey key) throws IOException {
+        //判断key是否有效,因为selector和channel关闭都会使key无效
         if (key.isValid()) {
             SocketChannel sc = (SocketChannel) key.channel();
+            //也就是说Socket是可连接的
             if (key.isConnectable()) {
+                //判断是否连接成功,因为有可能连接失败
                 if (sc.finishConnect()) {
+                    //成功以后向selector注册READ事件,关注数据读取事件,也就是说一旦服务器给客户端返回数据后可以进行读取
                     sc.register(selector, SelectionKey.OP_READ);
+                    //向服务端写入数据
                     doWrite(sc);
                 } else {
                     //连接失败
                     System.exit(1);
                 }
             }
+            //这里是处理从服务端读取回来的数据
             if (key.isReadable()) {
                 ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
                 int readBytes = sc.read(byteBuffer);
@@ -104,6 +113,7 @@ public class NioTimeClient implements Runnable {
 
     }
 
+    //给服务端发送数据
     private void doWrite(SocketChannel sc) throws IOException {
         byte[] req = ("Client time is "+new Date().toString()).getBytes();
         ByteBuffer writeBuffer = ByteBuffer.allocate(req.length);
@@ -115,6 +125,10 @@ public class NioTimeClient implements Runnable {
         }
     }
 
+    /**
+     * 连接服务端
+     * @throws IOException
+     */
     private void doConnect() throws IOException {
          if(socketChannel.connect(new InetSocketAddress(host,port))){
              socketChannel.register(selector,SelectionKey.OP_READ);
