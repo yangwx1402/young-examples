@@ -103,19 +103,21 @@ public class NioMultiplexerTimeServer implements Runnable {
             if (key.isReadable()) {
                 SocketChannel sc = (SocketChannel) key.channel();
                 ByteBuffer readBuffer = ByteBuffer.allocate(1024);
-                int readBytes = sc.read(readBuffer);
-                if (readBytes > 0) {
-                    readBuffer.flip();
-                    byte[] bytes = new byte[readBuffer.remaining()];
-                    readBuffer.get(bytes);
-                    String body = new String(bytes, "UTF-8");
-                    System.out.println("The time server receive data " + body);
-                    doWrite(sc, new Date().toString());
-                } else if (readBytes < 0) {
-                    key.channel();
-                    sc.close();
-                } else
-                    ;
+                if (sc.isOpen()) {
+                    int readBytes = sc.read(readBuffer);
+                    if (readBytes > 0) {
+                        readBuffer.flip();
+                        byte[] bytes = new byte[readBuffer.remaining()];
+                        readBuffer.get(bytes);
+                        String body = new String(bytes, "UTF-8");
+                        System.out.println("The time server receive data " + body);
+                        doWrite(sc, "the server time is " + new Date().toString());
+                    } else if (readBytes < 0) {
+                        key.channel();
+                        sc.close();
+                    } else
+                        ;
+                }
             }
         }
     }
