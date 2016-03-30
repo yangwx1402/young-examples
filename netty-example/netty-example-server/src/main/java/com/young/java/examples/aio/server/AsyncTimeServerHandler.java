@@ -47,4 +47,9 @@ public class AsyncTimeServerHandler implements Runnable {
     private void doAccept() {
         asynchronousServerSocketChannel.accept(this, new AcceptCompeletionHandler());
     }
+
+    public static void main(String[] args){
+        AsyncTimeServerHandler serverHandler = new AsyncTimeServerHandler(9999);
+        new Thread(serverHandler).start();
+    }
 }
