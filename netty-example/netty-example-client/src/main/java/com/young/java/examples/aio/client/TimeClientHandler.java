@@ -113,4 +113,8 @@ public class TimeClientHandler implements Runnable {
             socketChannel.register(selector,SelectionKey.OP_CONNECT);
         }
     }
+    public static void main(String[] args){
+        TimeClientHandler clientHandler = new TimeClientHandler("localhost",9999);
+        new Thread(clientHandler).start();
+    }
 }
