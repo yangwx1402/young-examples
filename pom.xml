@@ -9,6 +9,7 @@
     <module>netty-example</module>
     <module>thrift-example</module>
     <module>common-example</module>
+    <module>file-upload-example</module>
   </modules>
   <packaging>pom</packaging>
 
