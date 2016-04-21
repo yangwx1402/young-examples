@@ -15,6 +15,7 @@
     <modules>
         <module>thrift-example-server</module>
         <module>thrift-example-client</module>
+        <module>thrift-example-api</module>
     </modules>
 
     <properties>

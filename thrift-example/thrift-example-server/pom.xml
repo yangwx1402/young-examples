@@ -18,5 +18,10 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.young.java.examples</groupId>
+            <artifactId>thrift-example-api</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
     </dependencies>
 </project>
