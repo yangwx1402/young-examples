@@ -1,6 +1,5 @@
 package com.young.java.examples.shiro;
 
-import junit.framework.Assert;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -30,7 +29,7 @@ public class UserLoginExample {
             //登录失败
             e.printStackTrace();
         }
-        Assert.assertEquals(true, subject.isAuthenticated());
+       // Assert.assertEquals(true, subject.isAuthenticated());
         //5.退出
         subject.logout();
     }

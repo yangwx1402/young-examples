@@ -18,7 +18,6 @@
         <shiro-version>1.2.4</shiro-version>
     </properties>
     <dependencies>
-
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
