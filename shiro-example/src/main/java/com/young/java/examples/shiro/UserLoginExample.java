@@ -13,13 +13,14 @@ import org.apache.shiro.util.Factory;
  */
 public class UserLoginExample {
     public void login() {
-        //1.获取SecurityManager工厂,此处使用Ini配置文件初始化SecurityManager
-        //Factory<org.apache.shiro.mgt.SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
-        Factory<org.apache.shiro.mgt.SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-realm.ini");
-        //2.得到SecurityManager,并绑定给SecurityUtils
-        SecurityManager securityManager = factory.getInstance();
-        SecurityUtils.setSecurityManager(securityManager);
-        Subject subject = SecurityUtils.getSubject();
+//        //1.获取SecurityManager工厂,此处使用Ini配置文件初始化SecurityManager
+//        //Factory<org.apache.shiro.mgt.SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
+//        Factory<org.apache.shiro.mgt.SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-realm.ini");
+//        //2.得到SecurityManager,并绑定给SecurityUtils
+//        SecurityManager securityManager = factory.getInstance();
+//        SecurityUtils.setSecurityManager(securityManager);
+//        Subject subject = SecurityUtils.getSubject();
+        Subject subject = ShiroUtils.getCurrentSubject("classpath:shiro-realm.ini");
         //3.得到Subject及创建用户名和密码的身份验证Token
         UsernamePasswordToken token = new UsernamePasswordToken("zhang", "123");
         try {
@@ -29,11 +30,12 @@ public class UserLoginExample {
             //登录失败
             e.printStackTrace();
         }
-       // Assert.assertEquals(true, subject.isAuthenticated());
+        // Assert.assertEquals(true, subject.isAuthenticated());
         //5.退出
         subject.logout();
     }
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         UserLoginExample example = new UserLoginExample();
         example.login();
     }
