@@ -9,14 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>common-example</artifactId>
+    <artifactId>hbase-example</artifactId>
 
+    <properties>
+        <hbase-version>1.2.1</hbase-version>
+    </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.jcraft</groupId>
-            <artifactId>jsch</artifactId>
-            <version>0.1.53</version>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>${hbase-version}</version>
         </dependency>
     </dependencies>
+
 </project>
