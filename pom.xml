@@ -12,6 +12,7 @@
         <module>file-upload-example</module>
         <module>test-framework-example</module>
         <module>hbase-example</module>
+        <module>shiro-example</module>
     </modules>
     <packaging>pom</packaging>
 
