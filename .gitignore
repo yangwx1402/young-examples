@@ -1,3 +1,16 @@
 /common-example/common-example.iml
 
 /.idea/
+/young-examples.iml
+/thrift-example/thrift-example.iml
+/thrift-example/thrift-example-server/thrift-example-server.iml
+/thrift-example/thrift-example-client/thrift-example-client.iml
+/thrift-example/thrift-example-api/thrift-example-api.iml
+/test-framework-example/test-framework-example.iml
+/netty-example/netty-example.iml
+/netty-example/netty-example-server/netty-example-server.iml
+/netty-example/netty-example-client/netty-example-client.iml
+/hbase-example/target
+/hbase-example/hbase-example.iml
+/file-upload-example/file-upload-example.iml
+/common-example/target

@@ -10,6 +10,8 @@
         <module>thrift-example</module>
         <module>common-example</module>
         <module>file-upload-example</module>
+        <module>test-framework-example</module>
+        <module>hbase-example</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -21,6 +23,7 @@
         <commons-io-version>2.4</commons-io-version>
         <commons-lang-version>3.4</commons-lang-version>
         <commons-collections-version>3.2.2</commons-collections-version>
+        <commons-logging-version>1.2</commons-logging-version>
     </properties>
 
     <dependencies>
@@ -44,6 +47,11 @@
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
             <version>${commons-collections-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons-logging-version}</version>
         </dependency>
 
     </dependencies>
