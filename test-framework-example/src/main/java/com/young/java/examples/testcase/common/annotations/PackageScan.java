@@ -1,4 +1,4 @@
-package com.young.java.examples.testcase.annotations;
+package com.young.java.examples.testcase.common.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -10,6 +10,6 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface TestCase {
-    String value();
+public @interface PackageScan {
+    String path();
 }

@@ -1,10 +1,13 @@
-package com.young.java.examples.testcase.boot;
+package com.young.java.examples.testcase.common.boot;
 
-import com.young.java.examples.testcase.annotations.PackageScan;
-import com.young.java.examples.testcase.annotations.TestCase;
-import com.young.java.examples.testcase.common.Config;
-import com.young.java.examples.testcase.example.TestConfig;
+import com.young.java.examples.testcase.common.annotations.PackageScan;
+import com.young.java.examples.testcase.common.process.AnnotationProcess;
+import com.young.java.examples.testcase.example.testframework.annotations.TestCase;
+import com.young.java.examples.testcase.common.config.Config;
+import com.young.java.examples.testcase.example.testframework.config.TestConfig;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.File;
 import java.lang.annotation.Annotation;
@@ -17,6 +20,8 @@ import java.util.List;
  * Created by Administrator on 2016/5/5.
  */
 public class AnnotationBoot {
+
+
     /**
      * @param clazz
      */
@@ -32,44 +37,36 @@ public class AnnotationBoot {
         return flag;
     }
 
-    public void boot(Class<? extends Config>[] classes) throws Exception {
+    public void boot(Class<? extends Config>[] classes,List<AnnotationProcess> processes) throws Exception {
         if (classes == null || classes.length == 0)
             return;
         for (Class clazz : classes) {
             if (checkConfigInterface(clazz)) {
-                process(clazz);
+                process(clazz,processes);
             } else {
                 throw new Exception(clazz.getName() + " is not implements Config");
             }
         }
     }
 
-    private void process(Class clazz) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, InstantiationException, ClassNotFoundException {
+    private void process(Class clazz, List<AnnotationProcess> processes) throws Exception {
         Annotation annotation = clazz.getAnnotation(PackageScan.class);
         Method method = annotation.getClass().getMethod("path");
         String path = (String) method.invoke(annotation);
         List<String> classes = scanClasses(path);
-        if(!CollectionUtils.isEmpty(classes)) {
+        if (!CollectionUtils.isEmpty(classes)) {
             for (String str : classes) {
-                invokeTest(str);
+                invokeTest(str, processes);
             }
         }
     }
 
-    private void invokeTest(String str) throws ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
+    private void invokeTest(String str, List<AnnotationProcess> processes) throws Exception {
         Class clazz = Class.forName(str);
-        Annotation annotation = clazz.getAnnotation(TestCase.class);
-        Method method = annotation.getClass().getMethod("value");
-        String name = (String) method.invoke(annotation);
-        Object obj = clazz.newInstance();
-        Method[] methods = clazz.getDeclaredMethods();
-        if(methods!=null&&methods.length>0){
-            long start = System.currentTimeMillis();
-            System.out.println("begining test "+name);
-            for(Method m:methods){
-                m.invoke(obj);
+        if(!CollectionUtils.isEmpty(processes)){
+            for(AnnotationProcess process:processes){
+                process.process(clazz);
             }
-            System.out.println("end test "+name+",cost time "+(System.currentTimeMillis()-start));
         }
     }
 
@@ -84,10 +81,5 @@ public class AnnotationBoot {
             classes.add(className.substring(0, className.length() - 6));
         }
         return classes;
-    }
-
-    public static void main(String[] args) throws Exception {
-        AnnotationBoot boot = new AnnotationBoot();
-        boot.boot(new Class[]{TestConfig.class});
     }
 }
