@@ -1,13 +1,13 @@
-package com.young.java.examples.testcase.example.testframework.process;
+package com.young.java.examples.testcase.testframework.process;
 
-import com.young.java.examples.testcase.common.process.AnnotationProcess;
-import com.young.java.examples.testcase.example.testframework.annotations.TestCase;
+
+import com.young.java.examples.annotation.common.process.AnnotationProcess;
+import com.young.java.examples.testcase.testframework.annotations.TestCase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-
 /**
  * Created by dell on 2016/5/10.
  */

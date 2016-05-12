@@ -1,12 +1,11 @@
 package com.am.jlfu.identifier;
 
 
-import java.util.UUID;
+import com.am.jlfu.identifier.impl.DefaultIdentifierProvider;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.am.jlfu.identifier.impl.DefaultIdentifierProvider;
+import java.util.UUID;
 
 
 

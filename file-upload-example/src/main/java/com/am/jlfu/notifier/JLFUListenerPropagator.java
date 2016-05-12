@@ -1,9 +1,8 @@
 package com.am.jlfu.notifier;
 
 
-import org.springframework.stereotype.Component;
-
 import com.am.jlfu.notifier.utils.GenericPropagator;
+import org.springframework.stereotype.Component;
 
 
 

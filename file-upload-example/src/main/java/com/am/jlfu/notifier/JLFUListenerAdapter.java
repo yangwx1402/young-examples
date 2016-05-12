@@ -1,10 +1,10 @@
 package com.am.jlfu.notifier;
 
 
+import com.am.jlfu.staticstate.entities.FileProgressStatus;
+
 import java.util.Collection;
 import java.util.UUID;
-
-import com.am.jlfu.staticstate.entities.FileProgressStatus;
 
 
 

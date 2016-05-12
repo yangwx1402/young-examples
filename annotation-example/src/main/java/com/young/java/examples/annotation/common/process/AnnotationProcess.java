@@ -1,4 +1,4 @@
-package com.young.java.examples.testcase.common.process;
+package com.young.java.examples.annotation.common.process;
 
 /**
  * Created by dell on 2016/5/10.

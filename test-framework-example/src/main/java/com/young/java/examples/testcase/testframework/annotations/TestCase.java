@@ -1,4 +1,4 @@
-package com.young.java.examples.testcase.example.testframework.annotations;
+package com.young.java.examples.testcase.testframework.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

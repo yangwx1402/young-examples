@@ -1,4 +1,4 @@
-package com.young.java.examples.testcase.common.config;
+package com.young.java.examples.annotation.common.config;
 
 /**
  * Created by Administrator on 2016/5/5.

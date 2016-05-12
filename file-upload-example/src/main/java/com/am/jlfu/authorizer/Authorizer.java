@@ -1,12 +1,11 @@
 package com.am.jlfu.authorizer;
 
 
-import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.am.jlfu.fileuploader.exception.AuthorizationException;
 import com.am.jlfu.fileuploader.web.UploadServletAction;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 
 

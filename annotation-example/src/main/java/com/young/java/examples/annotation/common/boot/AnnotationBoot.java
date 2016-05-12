@@ -1,17 +1,13 @@
-package com.young.java.examples.testcase.common.boot;
+package com.young.java.examples.annotation.common.boot;
 
-import com.young.java.examples.testcase.common.annotations.PackageScan;
-import com.young.java.examples.testcase.common.process.AnnotationProcess;
-import com.young.java.examples.testcase.example.testframework.annotations.TestCase;
-import com.young.java.examples.testcase.common.config.Config;
-import com.young.java.examples.testcase.example.testframework.config.TestConfig;
+
+import com.young.java.examples.annotation.common.annotations.PackageScan;
+import com.young.java.examples.annotation.common.config.Config;
+import com.young.java.examples.annotation.common.process.AnnotationProcess;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.io.File;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;

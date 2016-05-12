@@ -1,6 +1,6 @@
-package com.young.java.examples.testcase.example.testframework.test;
+package com.young.java.examples.testcase.testframework.test;
 
-import com.young.java.examples.testcase.example.testframework.annotations.TestCase;
+import com.young.java.examples.testcase.testframework.annotations.TestCase;
 
 import java.util.HashMap;
 import java.util.Map;

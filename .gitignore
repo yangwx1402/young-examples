@@ -15,3 +15,7 @@
 /file-upload-example/file-upload-example.iml
 /common-example/target
 /shiro-example/shiro-example.iml
+/.idea/libraries
+/thrift-example/thrift-example.iml
+/netty-example/netty-example.iml
+/annotation-example/annotation-example.iml

@@ -1,4 +1,4 @@
-package com.young.java.examples.testcase.common.annotations;
+package com.young.java.examples.annotation.common.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
