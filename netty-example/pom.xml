@@ -10,7 +10,7 @@
     <artifactId>netty-example</artifactId>
     <packaging>pom</packaging>
 
-    <name>${artifactId}</name>
+    <name>netty-example</name>
     <url>http://maven.apache.org</url>
     <modules>
         <module>netty-example-server</module>

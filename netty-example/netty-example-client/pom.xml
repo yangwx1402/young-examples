@@ -10,7 +10,7 @@
     <artifactId>netty-example-client</artifactId>
     <packaging>jar</packaging>
 
-    <name>${artifactId}</name>
+    <name>netty-example-client</name>
     <url>http://maven.apache.org</url>
 
     <properties>

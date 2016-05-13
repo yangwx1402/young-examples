@@ -10,7 +10,7 @@
     <artifactId>thrift-example-server</artifactId>
     <packaging>jar</packaging>
 
-    <name>${artifactId</name>
+    <name>${artifactId}</name>
     <url>http://maven.apache.org</url>
 
     <properties>

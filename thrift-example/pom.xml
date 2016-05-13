@@ -10,7 +10,7 @@
     <artifactId>thrift-example</artifactId>
     <packaging>pom</packaging>
 
-    <name>${artifactId</name>
+    <name>${artifactId}</name>
     <url>http://maven.apache.org</url>
     <modules>
         <module>thrift-example-server</module>

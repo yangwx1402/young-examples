@@ -11,6 +11,10 @@
 
     <artifactId>common-example</artifactId>
 
+    <properties>
+        <jackson-version>1.9.13</jackson-version>
+        <codec-version>1.10</codec-version>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -18,5 +22,16 @@
             <artifactId>jsch</artifactId>
             <version>0.1.53</version>
         </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${codec-version}</version>
+        </dependency>
+
     </dependencies>
 </project>
