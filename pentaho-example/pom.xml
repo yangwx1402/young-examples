@@ -13,11 +13,95 @@
     <name>pentaho-example</name>
     <url>http://maven.apache.org</url>
 
+    <repositories>
+        <repository>
+            <id>pentaho-repo</id>
+            <name>pentaho Repository</name>
+            <url>http://repo.pentaho.org/artifactory/pentaho/</url>
+        </repository>
+    </repositories>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-classic-database-model</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/pentaho-database-model-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-classic-core</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/pentaho-reporting-engine-classic-core-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-libloader</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/libloader-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-librepository</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/librepository-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-libbase</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/libbase-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-libserializer</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/libserializer-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-libformula</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/libformula-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-libfonts</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/libfonts-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-libformat</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/libformat-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-libdocbundle</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/libdocbundle-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-libxml</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/libxml-6.1.0.1-196.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>
