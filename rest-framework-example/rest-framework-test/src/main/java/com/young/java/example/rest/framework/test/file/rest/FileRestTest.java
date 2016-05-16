@@ -29,7 +29,7 @@ public class FileRestTest {
 
     public void uploadFileObject() throws IOException {
         HttpClient http = HttpClients.createDefault();
-        String url = "http://localhost:8080/young-rest/file/upload";
+        String url = "http://localhost:8080/young-rest/file/forward";
         String filePath = "D:\\net-object.thrift";
         FileBody fileBody = new FileBody(new File(filePath));
         HttpPost httppost = new HttpPost(url);

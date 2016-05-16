@@ -1,5 +1,6 @@
 package com.young.example.rest.framework.build.boot;
 
+import com.young.example.rest.framework.build.plugin.FileUploadPlugin;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
@@ -28,6 +29,12 @@ public class BootAppInitializer implements WebApplicationInitializer {
                 "DispatcherServlet", new DispatcherServlet(context));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping(MAPPING_URL);
+
+        ServletRegistration.Dynamic forward = servletContext.addServlet("ForwardServlet",new FileUploadPlugin());
+        forward.setLoadOnStartup(2);
+        forward.addMapping("/file/forward");
+
+
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
         FilterRegistration.Dynamic encodingFilter = servletContext.addFilter(
