@@ -23,6 +23,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <mysql-driver-version>5.1.37</mysql-driver-version>
     </properties>
 
     <dependencies>
@@ -77,6 +78,13 @@
         </dependency>
         <dependency>
             <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-libformula-ui</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/libformula-ui-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
             <artifactId>pentaho-reporting-engine-libfonts</artifactId>
             <version>6.1.0.1-196</version>
             <scope>system</scope>
@@ -102,6 +110,79 @@
             <version>6.1.0.1-196</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/src/libs/libxml-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>jfreechart</groupId>
+            <artifactId>pentaho-reporting-engine-jfreechart</artifactId>
+            <version>1.0.13</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/jfreechart-1.0.13.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-charts</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/pentaho-reporting-engine-legacy-charts-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-functions</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/pentaho-reporting-engine-legacy-functions-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-report-charts</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/report-designer-ext-legacy-charts-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-report-ext-pentaho</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/report-designer-ext-pentaho-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-report-ext-toc</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/report-designer-ext-toc-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-report-ext-wizard</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/report-designer-ext-wizard-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-report-configuration-editor</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/report-designer-configuration-editor-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>pentaho-reporting-engine</groupId>
+            <artifactId>pentaho-reporting-engine-report-designer</artifactId>
+            <version>6.1.0.1-196</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/libs/report-designer-6.1.0.1-196.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-driver-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>2.5.1</version>
         </dependency>
     </dependencies>
 </project>
