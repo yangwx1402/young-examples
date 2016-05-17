@@ -1,5 +1,6 @@
 package com.young.example.rest.framework.build.boot;
 
+import com.young.example.rest.framework.build.plugin.ExecuteCostPlugin;
 import com.young.example.rest.framework.build.plugin.FileUploadPlugin;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -8,10 +9,7 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import javax.servlet.FilterRegistration;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
+import javax.servlet.*;
 
 public class BootAppInitializer implements WebApplicationInitializer {
 
@@ -30,17 +28,28 @@ public class BootAppInitializer implements WebApplicationInitializer {
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping(MAPPING_URL);
 
+        //设置转发
         ServletRegistration.Dynamic forward = servletContext.addServlet("ForwardServlet",new FileUploadPlugin());
         forward.setLoadOnStartup(2);
         forward.addMapping("/file/forward");
 
 
+        String mapping_url = MAPPING_URL+"*";
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
-        FilterRegistration.Dynamic encodingFilter = servletContext.addFilter(
-                "characterEncodingFilter", characterEncodingFilter);
-        encodingFilter.addMappingForUrlPatterns(null, false, MAPPING_URL);
 
+        addFilter(servletContext,characterEncodingFilter,mapping_url);
+
+        addFilter(servletContext,new ExecuteCostPlugin(),mapping_url);
+
+
+
+    }
+
+    private void addFilter(ServletContext servletContext,Filter filter,String mapping_url){
+        FilterRegistration.Dynamic filterRegistration = servletContext.addFilter(
+                filter.getClass().getName(), filter);
+        filterRegistration.addMappingForUrlPatterns(null, false, mapping_url);
     }
 
     /**
