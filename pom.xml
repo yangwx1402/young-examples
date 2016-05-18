@@ -15,6 +15,7 @@
         <module>annotation-example</module>
         <module>rest-framework-example</module>
         <module>pentaho-example</module>
+        <module>spring-example</module>
     </modules>
     <packaging>pom</packaging>
 
