@@ -8,10 +8,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>druid-example</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>druid-example</name>
     <url>http://maven.apache.org</url>
+    <modules>
+        <module>druid-admin-example</module>
+        <module>druid-datasource-example</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,6 +27,11 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>${druid-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.young.java.examples</groupId>
+            <artifactId>spring-example</artifactId>
+            <version>${parent.version}</version>
         </dependency>
     </dependencies>
 </project>
