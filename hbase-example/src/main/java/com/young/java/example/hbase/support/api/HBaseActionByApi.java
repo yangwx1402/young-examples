@@ -68,7 +68,7 @@ public class HBaseActionByApi implements HBaseAction {
     }
 
     @Override
-    public Object execute(String tableName, HTableCallBack callBack) throws HBaseException {
+    public <T> T execute(String tableName, HTableCallBack<T> callBack) throws HBaseException {
         Table table = null;
         try {
             table = dataSource.getConnection().getTable(TableName.valueOf(tableName));

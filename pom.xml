@@ -18,6 +18,7 @@
         <module>yarn-example</module>
         <module>druid-example</module>
         <module>spring-example</module>
+        <module>zookeeper-example</module>
     </modules>
     <packaging>pom</packaging>
 

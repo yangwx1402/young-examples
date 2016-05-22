@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema
-        xmlns="http://blog.csdn.net/cutesource/schema/people"
+        xmlns="http://www.young.com/young/schema/people"
         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
         xmlns:beans="http://www.springframework.org/schema/beans"
-        targetNamespace="http://blog.csdn.net/cutesource/schema/people"
+        targetNamespace="http://www.young.com/young/schema/people"
         elementFormDefault="qualified"
         attributeFormDefault="unqualified">
        <xsd:import namespace="http://www.springframework.org/schema/beans" />

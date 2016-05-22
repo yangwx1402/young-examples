@@ -11,6 +11,6 @@ public interface HBaseAction {
 
     <T> List<T> queryByRange(String tableName,byte[] startRow,byte[] endRow,RowMapper<T> mapper) throws HBaseException;
 
-    Object execute(String table,HTableCallBack callBack) throws HBaseException;
+    <T> T execute(String table,HTableCallBack<T> callBack) throws HBaseException;
 
 }
