@@ -1,0 +1,18 @@
+百分点推荐系统资料提供
+银行大数据用户画像应用场景ppt
+用户个性化标签产生方案提供
+
+lips base logo制作和替换
+lips moduler logo替换
+
+lips Base页脚bug修改
+
+lips moduler前后端代码分拆
+
+
+
+
+
+数据导入
+重新计算
+修改用户管理信息

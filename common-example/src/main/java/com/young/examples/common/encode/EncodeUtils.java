@@ -1,12 +1,10 @@
 package com.young.examples.common.encode;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.UUID;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
 
@@ -32,7 +30,14 @@ public class EncodeUtils {
 	{
 		return Hashing.md5().hashString(path, Charset.defaultCharset()).toString();
 	}
-	
+
+	public static String base64Encode(String line) throws UnsupportedEncodingException {
+		return new String(Base64.encodeBase64(line.getBytes()),"utf-8");
+	}
+	public static String base64Decode(String data) throws UnsupportedEncodingException {
+		return new String(Base64.decodeBase64(data),"utf-8");
+	}
+
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		String md51 = EncodeUtils.md5(new FileInputStream("D:\\2\\白.doc"));
 		System.out.println(md51);
