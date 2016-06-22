@@ -14,6 +14,7 @@
     <properties>
         <jackson-version>1.9.13</jackson-version>
         <codec-version>1.10</codec-version>
+        <cglib-version>3.2.2</cglib-version>
     </properties>
 
     <dependencies>
@@ -33,5 +34,10 @@
             <version>${codec-version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>${cglib-version}</version>
+        </dependency>
     </dependencies>
 </project>
