@@ -34,5 +34,10 @@
             <artifactId>hadoop-hdfs</artifactId>
             <version>${hadoop-version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.isoftstone.bigdata</groupId>
+            <artifactId>workflow-api</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 </project>
