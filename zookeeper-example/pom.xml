@@ -25,5 +25,10 @@
             <version>${zookeeper-version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.young.java.examples</groupId>
+            <artifactId>common-example</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 </project>

@@ -1,9 +1,11 @@
 package com.young.java.examples.zookeeper;
 
+import com.young.java.examples.zookeeper.watcher.DataWatcher;
 import com.young.java.examples.zookeeper.watcher.ExistWatcher;
 import com.young.java.examples.zookeeper.watcher.ZookeeperWatcher;
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.ACL;
+import org.apache.zookeeper.data.Stat;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,11 +35,11 @@ public class ZookeeperApi {
 //        },"");
     }
 
-    public void exist(String path,Watcher watcher) throws KeeperException, InterruptedException {
+    public boolean exist(String path) throws KeeperException, InterruptedException {
         //这里就会采用默认的创建Zookeeper对象时候的Watcher
         //zooKeeper.exists(path,true);
         //指定一个特殊的watcher
-        zooKeeper.exists(path,watcher);
+        return zooKeeper.exists(path,new ExistWatcher())==null;
     }
 
     //version==-1为删除所有的数据
@@ -45,10 +47,23 @@ public class ZookeeperApi {
         zooKeeper.delete(path,version);
     }
 
+    public String getData(String path) throws KeeperException, InterruptedException {
+        return new String(zooKeeper.getData(path,new DataWatcher(),null));
+    }
+
+    public void setData(String path,String data) throws KeeperException, InterruptedException {
+        zooKeeper.setData(path,data.getBytes(),-1);
+    }
+
+
+
     public static void main(String[] args) throws IOException, KeeperException, InterruptedException {
         ZookeeperApi api = new ZookeeperApi("10.16.124.30", 2181);
         api.addNode("/root1","yangyong",ZooDefs.Ids.OPEN_ACL_UNSAFE,CreateMode.PERSISTENT);
-        api.exist("/root1",new ExistWatcher());
+        System.out.println(api.getData("/root1"));
+        api.setData("/root1","yangzhi");
+        System.out.println(api.getData("/root1"));
+        api.exist("/root1");
         api.delete("/root1",-1);
     }
 }
