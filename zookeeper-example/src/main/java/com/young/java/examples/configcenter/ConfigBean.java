@@ -25,4 +25,8 @@ public class ConfigBean implements Serializable {
     public void setPort(Integer port) {
         this.port = port;
     }
+
+    public String toString(){
+        return ip+":"+port;
+    }
 }
