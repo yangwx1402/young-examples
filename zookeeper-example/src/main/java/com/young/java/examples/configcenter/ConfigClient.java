@@ -1,47 +1,47 @@
 package com.young.java.examples.configcenter;
 
-import com.young.examples.common.json.JsonUtils;
-import org.apache.zookeeper.KeeperException;
-import org.apache.zookeeper.WatchedEvent;
-import org.apache.zookeeper.Watcher;
-import org.apache.zookeeper.ZooKeeper;
+import com.young.java.examples.zkclient.IZkDataListener;
+import com.young.java.examples.zkclient.ZkClient;
 
-import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Created by dell on 2016/6/30.
  */
-public class ConfigClient {
-    private ZooKeeper zookeeper;
+public class ConfigClient<T extends Serializable> {
 
-    private static final int timeout = 10000;
+    private ConfigBean configInfo;
 
-    public ConfigClient(String ip, int port) throws IOException {
-        zookeeper = new ZooKeeper(ip + ":" + port, timeout, new ConfigWatcher());
+    private ZkClient zkClient;
+
+    private String configPath;
+
+    public ConfigClient(String zkServer,int timeout,String configPath){
+        this.configPath = configPath;
+        zkClient = new ZkClient(zkServer,timeout);
+        listenerConfigDataChange();
     }
 
-    public <T> T getConfig(final String path, final Class<T> tClass) throws KeeperException, InterruptedException, IOException {
-        String json = new String(zookeeper.getData(path, new Watcher() {
-            @Override
-            public void process(WatchedEvent watchedEvent) {
-                System.out.println(watchedEvent.getType());
-                if(watchedEvent.getType()== Event.EventType.NodeDataChanged){
+    public T getConfig(){
+        return zkClient.readData(configPath);
+    }
 
+    private void listenerConfigDataChange(){
+        zkClient.subscribeDataChanges(configPath, new IZkDataListener() {
+            @Override
+            public void handleDataChange(String dataPath, Object data) throws Exception {
+                if(dataPath.equals(configPath)){
+                    configInfo = (ConfigBean) data;
                 }
             }
-        }, null));
-        return JsonUtils.json2Object(json, tClass);
 
+            @Override
+            public void handleDataDeleted(String dataPath) throws Exception {
+                 if(dataPath.equals(configPath)){
+                     configInfo = null;
+                 }
+            }
+        });
     }
 
-
-    public static void main(String[] args) throws IOException, KeeperException, InterruptedException {
-        ConfigClient client = new ConfigClient("10.16.124.30", 2181);
-        String configPath = "/config";
-        ConfigBean bean = client.getConfig(configPath, ConfigBean.class);
-        for (int i = 0; i < 10; i++) {
-            System.out.println(bean.getIp() + ":" + bean.getPort());
-            Thread.sleep(6000);
-        }
-    }
 }

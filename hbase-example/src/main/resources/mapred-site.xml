@@ -1,0 +1,74 @@
+<configuration>
+		<property>
+			<name>mapreduce.framework.name</name>
+			<value>yarn</value>
+		</property>
+		<property>
+				<name>mapreduce.job.jvm.numtasks</name>
+				<value>-1</value>
+		</property>
+		<property> 
+                <name>mapreduce.tasktracker.map.tasks.maximum</name> 
+                <value>30</value> 
+        </property> 
+        <property> 
+                <name>mapreduce.tasktracker.reduce.tasks.maximum</name> 
+                <value>20</value> 
+        </property> 
+		<!--
+		<property> 
+                <name>mapred.map.child.java.opts</name> 
+                <value>-Xmx4096m</value> 
+        </property> -->
+		<property>
+			<name>mapred.child.java.opts</name>
+			<value>-Xmx1024m</value>
+		</property>
+			
+		<property> 
+               <name>mapred.map.child.java.opts</name> 
+               <value>-Xmx1024m</value> 
+        </property> 
+		<property>
+			<name>mapred.reduce.child.java.opts</name>
+			<value>-Xmx1024m</value>
+		</property>		
+		<property> 
+                <name>mapreduce.map.output.compress</name> 
+                <value>true</value> 
+        </property> 
+		<property> 
+                <name>mapreduce.map.output.compress.codec</name> 
+                <value>org.apache.hadoop.io.compress.DefaultCodec</value> 
+        </property> 
+		<property> 
+                <name>mapreduce.map.memory.mb</name>
+				<value>2048</value>
+        </property> 
+		<property> 
+                <name>mapreduce.reduce.memory.mb</name>
+				<value>2048</value>
+        </property>
+		  <property>
+			<name>mapreduce.jobhistory.address</name>
+			<value>THadoop2:10020</value>
+		  </property>
+		  <property>
+			<name>mapreduce.jobhistory.webapp.address</name>
+			<value>THadoop2:19888</value>
+		  </property>
+		  
+		  <property>
+			<name>mapreduce.reduce.shuffle.input.buffer.percent</name>
+			<value>0.10</value>
+		  </property>
+		  <property>
+			<name>mapreduce.reduce.shuffle.memory.limit.percent</name>
+			<value>0.05</value>
+		  </property>
+		  
+		  <property>
+			<name>mapreduce.reduce.maxattempts</name>
+			<value>4</value>
+		  </property>
+</configuration>

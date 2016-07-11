@@ -1,9 +1,11 @@
 package com.young.java.examples.configcenter;
 
+import java.io.Serializable;
+
 /**
  * Created by dell on 2016/6/30.
  */
-public class ConfigBean {
+public class ConfigBean implements Serializable {
     private String ip;
 
     private Integer port;
