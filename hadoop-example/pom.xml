@@ -35,9 +35,9 @@
             <version>${hadoop-version}</version>
         </dependency>
         <dependency>
-            <groupId>com.isoftstone.bigdata</groupId>
-            <artifactId>workflow-api</artifactId>
-            <version>1.0</version>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-mapreduce-client-core</artifactId>
+            <version>${hadoop-version}</version>
         </dependency>
     </dependencies>
 </project>
