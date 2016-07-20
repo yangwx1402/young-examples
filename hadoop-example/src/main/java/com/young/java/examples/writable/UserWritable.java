@@ -23,14 +23,17 @@ public class UserWritable implements WritableComparable<UserWritable> {
         return age;
     }
 
-    public void setValue(String username,Integer age){
+    public void setValue(String username, Integer age) {
         this.username = username;
         this.age = age;
     }
 
     @Override
     public int compareTo(UserWritable o) {
-        return o.getUsername().compareTo(username);
+        if (o.getUsername().compareTo(username) == 0) {
+            return o.getAge().compareTo(age);
+        } else
+            return o.getUsername().compareTo(username);
     }
 
     @Override
@@ -44,5 +47,9 @@ public class UserWritable implements WritableComparable<UserWritable> {
     public void readFields(DataInput dataInput) throws IOException {
         this.username = dataInput.readUTF();
         this.age = dataInput.readInt();
+    }
+
+    public String toString(){
+        return "[username="+username+",age="+age+"]";
     }
 }

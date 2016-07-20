@@ -31,6 +31,13 @@ public class WholeFileRecordReader extends RecordReader<Text, BytesWritable> {
 
     private boolean finishConverting = false;
 
+    /**
+     *
+     * @param split 是一个大文件的一个block,或者是一个小文件
+     * @param context
+     * @throws IOException
+     * @throws InterruptedException
+     */
     @Override
     public void initialize(InputSplit split, TaskAttemptContext context) throws IOException, InterruptedException {
         this.jobContext = context;
