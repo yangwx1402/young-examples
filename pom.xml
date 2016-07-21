@@ -20,6 +20,7 @@
         <module>spring-example</module>
         <module>zookeeper-example</module>
         <module>hadoop-example</module>
+        <module>sqlparser-example</module>
     </modules>
     <packaging>pom</packaging>
 
