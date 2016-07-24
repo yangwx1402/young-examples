@@ -21,11 +21,7 @@
             <artifactId>common-example</artifactId>
             <version>1.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.isoftstone.bigdata</groupId>
-            <artifactId>workflow-api</artifactId>
-            <version>1.0</version>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-client</artifactId>
