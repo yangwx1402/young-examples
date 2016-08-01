@@ -22,6 +22,7 @@
         <module>hadoop-example</module>
         <module>sqlparser-example</module>
         <module>mllib-example</module>
+        <module>servlet-example</module>
     </modules>
     <packaging>pom</packaging>
 

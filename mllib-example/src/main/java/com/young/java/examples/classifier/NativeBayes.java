@@ -18,6 +18,9 @@ import scala.Tuple2;
 import java.io.File;
 import java.io.Serializable;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class NativeBayes implements Serializable {
 
     public NativeBayesBean getConfig(){
@@ -27,11 +30,14 @@ public class NativeBayes implements Serializable {
         nativeBayesBean.setPutJarName("mllib-example-1.0.jar");
         nativeBayesBean.setDataBaseName("default");
         nativeBayesBean.setDataTableName("city");
-        nativeBayesBean.setSaveModelPath("/target/tmp");
+
         nativeBayesBean.setSaveModelName("Bayes");
         nativeBayesBean.setMasterHost("itl6");
         nativeBayesBean.setSparkPort("7077");
         nativeBayesBean.setSparkUiPort("8080");
+
+        nativeBayesBean.setSaveModelPath("hdfs://itl6:8020/math");
+        nativeBayesBean.setSaveModelName("Bayes"+ new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date()));
         return nativeBayesBean;
     }
 
@@ -44,29 +50,38 @@ public class NativeBayes implements Serializable {
         return sparkContext;
     }
 
-    public void runBayes(){
-
-        NativeBayesBean bayesBean = getConfig();
-        System.setProperty("HADOOP_USER_NAME", bayesBean.getHADOOP_USER_NAME());
-        System.setProperty("user.name", bayesBean.getUserName());
-        SparkContext sparkContext = getSparkContext(bayesBean);
-        JavaRDD<LabeledPoint>[] datas = readData(sparkContext,bayesBean);
-        NaiveBayesModel model = dataTraining(datas);
-        double accuracy = getModelAccuracy(model, datas[1]);
-        System.out.println(accuracy);
-        saveModel(sparkContext, model, bayesBean);
-        getModel(sparkContext, bayesBean);
-    }
-
     public static void main(String args[]){
         NativeBayes bayes = new NativeBayes();
         bayes.runBayes();
     }
 
+    public void runBayes(){
+        System.setProperty("hadoop.home.dir","/opt/hadoop");
+        NativeBayesBean bayesBean = getConfig();
+        System.setProperty("HADOOP_USER_NAME", bayesBean.getHADOOP_USER_NAME());
+        System.setProperty("user.name", bayesBean.getUserName());
+		System.out.println("SparkContext#######################begin:");
+        SparkContext sparkContext = getSparkContext(bayesBean);
+		System.out.println("SparkContext#######################end:");
+        JavaRDD<LabeledPoint>[] data = readData(sparkContext,bayesBean);
+		System.out.println("readData#######################end:");
+        NaiveBayesModel model = dataTraining(data);
+		System.out.println("dataTraining#######################end:");
+        saveModel(sparkContext, model, bayesBean);
+		System.out.println("saveModel#######################end:");
+        double accuracy = getModelAccuracy(getModel(sparkContext,bayesBean), data[1]);
+        System.out.println(accuracy);
+    }
+
     public static JavaRDD<LabeledPoint>[] readData(SparkContext sc,NativeBayesBean nativeBayesBean){
+    	System.out.println("readData#######################1:");
         HiveContext hive = new HiveContext(sc);
-        DataFrame result = hive.table(nativeBayesBean.getDataTableName());
+        System.out.println("readData#######################2:");
+        System.out.println("select * from " + nativeBayesBean.getDataBaseName() + "." + nativeBayesBean.getDataTableName());
+        DataFrame result = hive.sql("select * from " + nativeBayesBean.getDataBaseName() + "." + nativeBayesBean.getDataTableName());
+        System.out.println("readData#######################3:");
         JavaRDD<Row> data = result.toJavaRDD();
+        System.out.println("readData#######################4:");
         JavaRDD<LabeledPoint> inputData = data.map(new Function<Row, LabeledPoint>() {
             public LabeledPoint call(Row row) throws Exception {
                 double[] values = new double[row.length()-1];
@@ -76,7 +91,9 @@ public class NativeBayes implements Serializable {
                 return new LabeledPoint(row.getDouble(0), Vectors.dense(values));
             }
         });
-        JavaRDD<LabeledPoint>[] tmp = inputData.randomSplit(new double[]{0.6, 0.4});
+        System.out.println("readData#######################4:");
+        JavaRDD<LabeledPoint>[] tmp = inputData.randomSplit(new double[]{0.6, 1 - 0.6});
+        System.out.println("readData#######################5:");
         return tmp;
     }
 
