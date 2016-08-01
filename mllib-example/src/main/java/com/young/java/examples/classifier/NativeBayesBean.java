@@ -1,4 +1,4 @@
-package com.itl.bean;
+package com.young.java.examples.classifier;
 
 public class NativeBayesBean {
 	
