@@ -1,6 +1,8 @@
-package com.itl.bean;
+package com.young.java.examples.classifier;
 
-public class NativeBayesBean {
+import java.io.Serializable;
+
+public class NativeBayesBean implements Serializable {
 	
 	private String HADOOP_USER_NAME;
 	private String userName;
