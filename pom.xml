@@ -24,6 +24,7 @@
         <module>mllib-example</module>
         <module>servlet-example</module>
         <module>spring-boot-example</module>
+        <module>kafka-example</module>
     </modules>
     <packaging>pom</packaging>
 
