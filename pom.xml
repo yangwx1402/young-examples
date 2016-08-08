@@ -25,6 +25,7 @@
         <module>servlet-example</module>
         <module>spring-boot-example</module>
         <module>kafka-example</module>
+        <module>redis-example</module>
     </modules>
     <packaging>pom</packaging>
 
