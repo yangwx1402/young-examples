@@ -26,6 +26,9 @@
         <module>spring-boot-example</module>
         <module>kafka-example</module>
         <module>redis-example</module>
+        <module>classloader-example</module>
+        <module>systemml-example</module>
+        <module>beans-example</module>
     </modules>
     <packaging>pom</packaging>
 
