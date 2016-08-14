@@ -19,5 +19,15 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>com.young.java.examples</groupId>
+            <artifactId>beans-interface-example</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>1.12</version>
+        </dependency>
     </dependencies>
 </project>
