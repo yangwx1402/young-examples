@@ -6,7 +6,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 
 /**
- * Created by dell on 2016/8/12.
+ * Created by young on 2016/8/12.
  */
 public class ClassloaderExample {
 

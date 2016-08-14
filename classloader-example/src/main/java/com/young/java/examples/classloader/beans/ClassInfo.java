@@ -1,7 +1,7 @@
 package com.young.java.examples.classloader.beans;
 
 /**
- * Created by Administrator on 2016/8/14.
+ * Created by young on 2016/8/14.
  */
 public class ClassInfo {
 
@@ -10,8 +10,9 @@ public class ClassInfo {
         this.className = className;
     }
 
+    //类路径
     private String className;
-
+    //类字节码
     private byte[] classBytes;
 
     public String getClassName() {

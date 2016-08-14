@@ -1,4 +1,4 @@
-package com.young.java.examples.classloader;
+package com.young.java.examples.classloader.urlclassloader;
 
 import com.young.java.examples.classloader.beans.ClassInfo;
 
@@ -8,10 +8,13 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * Created by Administrator on 2016/8/14.
+ * Created by young on 2016/8/14.
  */
 public class UrlRefreshClassloader extends ClassLoader {
 
+    /**
+     * 需要通过该类加载器加载的jar包文件名
+     */
     private Set<String> loadClassPrefix;
 
     /**
@@ -21,7 +24,7 @@ public class UrlRefreshClassloader extends ClassLoader {
 
     public UrlRefreshClassloader(File[] jarFiles,Set<String> loadJarNames) throws Exception {
         super(null);
-        loadClassPrefix = new HashSet<String>();
+        this.loadClassPrefix = loadJarNames;
         /**
          * 加載所有的第三方jar包中的類
          */
@@ -30,6 +33,11 @@ public class UrlRefreshClassloader extends ClassLoader {
         }
     }
 
+    /**
+     * 加载jar包中的类
+     * @param jarFile jar文件
+     * @throws Exception
+     */
     private void loadClassByRefresh(File jarFile) throws Exception {
             FileInputStream fis = new FileInputStream(jarFile);
             List<ClassInfo> jarClassResult = JarFileTools.unzipJarFile(fis);
@@ -42,22 +50,45 @@ public class UrlRefreshClassloader extends ClassLoader {
             }
     }
 
+    /**
+     * 通过字节码加载Class
+     * @param className 类全限定名
+     * @param bytes  字节码
+     * @return Class
+     * @throws IOException
+     */
     private Class initClass(String className,byte[] bytes) throws IOException {
         return defineClass(className,bytes,0,bytes.length);
     }
 
+    /**
+     * 根据类名和字节码加载类
+     * @param clazzname
+     * @param bytes
+     * @return
+     * @throws IOException
+     */
     private Class loadClassFromClassPath(String clazzname,byte[] bytes) throws IOException {
         Class clazz = null;
         clazz = initClass(clazzname,bytes);
         return clazz;
     }
 
+    /**
+     * 重写ClassLoader的loadClass方法进行类的加载
+     * @param name
+     * @param resolve
+     * @return
+     * @throws ClassNotFoundException
+     */
     @Override
     protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
         Class clazz = null;
         clazz = findLoadedClass(name);
+        //不在要加载jar包中的类,通过系统加载器进行加载
         if(!allClasses.containsKey(name)&&clazz == null){
            clazz = getSystemClassLoader().loadClass(name);
+        //虽然在要加载的jar包中,但是jar包名字不在要加载的jar文件名的Set中,也采用系统加载器进行加载
         }else if(!loadClassPrefix.contains(allClasses.get(name))&&clazz ==null){
            clazz = getSystemClassLoader().loadClass(name);
         }
@@ -69,6 +100,4 @@ public class UrlRefreshClassloader extends ClassLoader {
         }
         return clazz;
     }
-
-
 }

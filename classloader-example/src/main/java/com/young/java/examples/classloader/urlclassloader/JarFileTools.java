@@ -1,4 +1,4 @@
-package com.young.java.examples.classloader;
+package com.young.java.examples.classloader.urlclassloader;
 
 import com.young.java.examples.classloader.beans.ClassInfo;
 import org.apache.commons.compress.archivers.ArchiveEntry;
@@ -10,10 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/14.
+ * Created by young on 2016/8/14.
  */
 public class JarFileTools {
 
+    /**
+     * 解析jar包中的类名和字节码
+     * @param inputStream
+     * @return
+     * @throws Exception
+     */
     public static List<ClassInfo> unzipJarFile(InputStream inputStream) throws Exception {
         ZipArchiveInputStream zais = null;
         List<ClassInfo> result = new ArrayList<ClassInfo>();

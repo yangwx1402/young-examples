@@ -1,11 +1,11 @@
-package com.young.java.examples.classloader;
+package com.young.java.examples.classloader.classselectclassloader;
 
 import com.young.java.examples.classloader.hotswap.HotSwapAction;
 
 import java.io.IOException;
 
 /**
- * Created by Administrator on 2016/8/14.
+ * Created by young on 2016/8/14.
  */
 public class RefreshClassloaderBoot {
     public static void main(String[] args) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException, InterruptedException {

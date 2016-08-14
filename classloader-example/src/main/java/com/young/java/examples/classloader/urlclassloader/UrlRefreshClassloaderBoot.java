@@ -1,4 +1,4 @@
-package com.young.java.examples.classloader;
+package com.young.java.examples.classloader.urlclassloader;
 
 import com.young.java.examples.classloader.hotswap.HotSwapAction;
 
@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Administrator on 2016/8/14.
+ * Created by young on 2016/8/14.
  */
 public class UrlRefreshClassloaderBoot {
     public static void main(String[] args) throws Exception {

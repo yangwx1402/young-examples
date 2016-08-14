@@ -1,4 +1,4 @@
-package com.young.java.examples.classloader;
+package com.young.java.examples.classloader.urlclassloader;
 
 import sun.misc.URLClassPath;
 
@@ -7,7 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Created by Administrator on 2016/8/14.
+ * Created by young on 2016/8/14.
  */
 public class URLClassPathExample {
     public static void main(String[] args) throws MalformedURLException {
