@@ -11,12 +11,12 @@ import java.util.Set;
  */
 public class UrlRefreshClassloaderBoot {
     public static void main(String[] args) throws Exception {
-        String jarPath = "E:\\young\\java\\young-examples\\beans-example\\beans-support-example\\target\\beans-support-example-1.0.jar";
-        File[] jarFiles = new File[]{new File(jarPath)};
+        File dependPath = new File("E:\\project\\young\\java\\young-examples\\beans-example\\beans-support-example\\lib");
+        File[] jarfiles = dependPath.listFiles();
         Set<String> filters = new HashSet<String>();
         filters.add("beans-support-example-1.0.jar");
         for(int i=0;i<10;i++) {
-            ClassLoader classLoader = new UrlRefreshClassloader(jarFiles,filters);
+            ClassLoader classLoader = new UrlRefreshClassloader(jarfiles,filters);
             Class clazz = classLoader.loadClass("com.young.java.examples.hotswap.HotSwapActionSupport");
             HotSwapAction action = (HotSwapAction) clazz.newInstance();
             action.sayHello();

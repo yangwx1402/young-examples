@@ -5,6 +5,8 @@ import org.apache.commons.compress.archivers.ArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.apache.commons.io.IOUtils;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,7 @@ public class JarFileTools {
 
     /**
      * 解析jar包中的类名和字节码
+     *
      * @param inputStream
      * @return
      * @throws Exception
@@ -29,16 +32,26 @@ public class JarFileTools {
             String name = null;
             byte[] temp = null;
             while ((archiveEntry = zais.getNextEntry()) != null) {
-                temp = new byte[(int) archiveEntry.getSize()];
                 name = archiveEntry.getName();
-                if(name.endsWith(".class")){
-                    IOUtils.readFully(zais, temp);
-                   result.add(new ClassInfo(name,temp));
+                System.out.println(archiveEntry.getSize()+ "," + name);
+                if (!archiveEntry.isDirectory()&&name.endsWith(".class")) {
+                    temp = toByteArray(zais);
+                    result.add(new ClassInfo(name, temp));
                 }
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return result;
+    }
+
+    private static byte[] toByteArray(InputStream input) throws IOException {
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        byte[] buffer = new byte[4096];
+        int n = 0;
+        while (-1 != (n = input.read(buffer))) {
+            output.write(buffer, 0, n);
+        }
+        return output.toByteArray();
     }
 }
