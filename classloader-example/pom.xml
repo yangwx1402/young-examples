@@ -29,10 +29,5 @@
             <artifactId>commons-compress</artifactId>
             <version>1.12</version>
         </dependency>
-        <dependency>
-            <groupId>com.young.java.examples</groupId>
-            <artifactId>hadoop-example</artifactId>
-            <version>1.0</version>
-        </dependency>
     </dependencies>
 </project>

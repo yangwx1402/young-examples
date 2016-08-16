@@ -12,8 +12,13 @@ import java.io.IOException;
 public class HotSwapActionSupport implements HotSwapAction {
     @Override
     public void sayHello() throws IOException {
-        System.out.println("hello world (version 6)");
+        System.out.println("hello world (version litao )");
         Configuration conf = new Configuration();
         Job job = Job.getInstance(conf);
+    }
+
+    public static void main(String[] args) throws IOException {
+        HotSwapAction action = new HotSwapActionSupport();
+        action.sayHello();
     }
 }
