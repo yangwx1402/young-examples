@@ -29,6 +29,7 @@
         <module>classloader-example</module>
         <module>systemml-example</module>
         <module>beans-example</module>
+        <module>jvm-example</module>
     </modules>
     <packaging>pom</packaging>
 
