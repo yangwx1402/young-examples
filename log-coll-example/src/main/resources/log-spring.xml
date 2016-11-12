@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+       <bean name="logIntercept" class="com.young.java.examples.intercept.LogIntercept" />
+       <aop:config>
+              <aop:aspect id="logAspect" ref="logIntercept">
+                     <!--<aop:pointcut id="target" expression="@annotation(com.young.java.examples.annotation.Log)"/>-->
+                     <aop:pointcut id="target" expression="execution(* com.young.java.examples.example.*.*(..))"/>
+                     <aop:before method="before" pointcut-ref="target"/>
+                     <aop:after method="after" pointcut-ref="target"/>
+                     <aop:after-throwing method="exception" pointcut-ref="target"/>
+              </aop:aspect>
+       </aop:config>
+</beans>
