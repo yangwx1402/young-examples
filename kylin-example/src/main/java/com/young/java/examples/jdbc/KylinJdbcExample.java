@@ -6,7 +6,7 @@ import java.sql.*;
  * Created by yangyong3 on 2016/11/23.
  */
 public class KylinJdbcExample {
-    private static final String url = "jdbc:kylin://localhost/project";
+    private static final String url = "jdbc:kylin://lebi.letv.cn/live_data";
     private static final String driver = "org.apache.kylin.jdbc.Driver";
     private static final String username = "admin";
     private static final String passwrod = "KYLIN";
