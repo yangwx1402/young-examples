@@ -7,6 +7,10 @@ package com.young.java.examples.concurrent.blockqueue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
+
+/**
+ * 阻塞队列,与LinkedBlockingQueue类似 不过Linked是以链接为底层实现
+ */
 public class ArrayBlockingQueueExample {
     public void example() throws InterruptedException {
         BlockingQueue<Integer> queue = new ArrayBlockingQueue<Integer>(10);
