@@ -49,10 +49,11 @@ public class MysqlAppender extends AbstractAppender {
             Properties properties = new Properties();
             properties.load(new FileInputStream(dbConfigPath));
             dataSource = new DruidDataSource();
-
+            return new MysqlAppender(name,filter,layout,ignoreExceptions);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     @Override
