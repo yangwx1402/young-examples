@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root name="system_log">
+       <module name="用户管理模块" split="|">
+           <oper name="添加用户" methodsignature="com.young.java.examples.example.DaoImpl.add">
+                  <args>
+                         <arg index="1" name="name"></arg>
+                         <arg index="2" name="age"></arg>
+                  </args>
+                  <params>
+                      <param name="test" vlaue="test"></param>
+                  </params>
+                  <handler name="defaultHandler" classname="com.young.java.examples.handler.DefaultLogHandler"></handler>
+           </oper>
+              <oper name="删除用户" methodsignature="com.young.java.examples.example.DaoImpl.delete">
+                     <args>
+                            <arg index="1" name="id"></arg>
+                     </args>
+                  <handler name="defaultHandler" classname="com.young.java.examples.handler.DefaultLogHandler"></handler>
+              </oper>
+       </module>
+    <!--
+    <storage type="mysql" handler="com.young.java.examples.handler.DefaultStorage">
+        <params>
+            <param name="url" value="mysql_url"></param>
+            <param name="driver" value=""></param>
+            <param name="username" value=""></param>
+            <param name="password" value=""></param>
+        </params>
+    </storage>
+    -->
+    <storage type="file" classname="com.young.java.examples.handler.DefaultStorage">
+        <params>
+        <param name="filename" value="E:\\log.log"></param>
+        </params>
+    </storage>
+</root>
