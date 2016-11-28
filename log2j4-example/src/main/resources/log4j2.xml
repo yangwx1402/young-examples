@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss z} %-5level %class{36} %L %M ||| %msg%xEx%n" />
+        </Console>
+        <HBase name="HBase" zookeeper="localhost:2181" table="log" rowKey="com.young.rowkey">
+            <PatternLayout pattern="%msg%xEx%n" />
+        </HBase>
+    </appenders>
+    <loggers>
+        <root level="debug">
+            <appender-ref ref="HBase"/>
+            <appender-ref ref="Console"/>
+        </root>
+    </loggers>
+</configuration>
