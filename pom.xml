@@ -29,6 +29,8 @@
         <module>classloader-example</module>
         <module>beans-example</module>
         <module>jvm-example</module>
+        <module>kylin-example</module>
+        <module>log2j4-example</module>
     </modules>
     <packaging>pom</packaging>
 
