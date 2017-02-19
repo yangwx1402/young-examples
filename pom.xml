@@ -33,6 +33,8 @@
         <module>log2j4-example</module>
         <module>log-coll-example</module>
         <module>spring-boot-examples</module>
+        <module>voice-recognized-example</module>
+        <module>spider-example</module>
     </modules>
     <packaging>pom</packaging>
 
