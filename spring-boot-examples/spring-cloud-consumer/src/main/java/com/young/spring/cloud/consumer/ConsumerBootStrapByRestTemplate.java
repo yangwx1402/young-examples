@@ -1,6 +1,5 @@
 package com.young.spring.cloud.consumer;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -14,7 +13,10 @@ import org.springframework.web.client.RestTemplate;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-public class ConsumerBootStrap {
+/**
+ * 採用Ribbon進行服務消費，Ribbon是負載均衡器，調用的時候需要使用RestTemplate對象進行，調用的時候還需要指定服務地址
+ */
+public class ConsumerBootStrapByRestTemplate {
 
     @Bean
     @LoadBalanced
@@ -23,10 +25,12 @@ public class ConsumerBootStrap {
     }
 
     public static void main(String[] args){
-        ApplicationContext context = SpringApplication.run(ConsumerBootStrap.class,args);
+        ApplicationContext context = SpringApplication.run(ConsumerBootStrapByRestTemplate.class,args);
         RestTemplate restTemplate = context.getBean(RestTemplate.class);
         String serviceUrl = "http://compute-service/add?first=1&second=2";
-        Integer result = restTemplate.getForEntity(serviceUrl,Integer.class).getBody();
-        System.out.println(result);
+        for(int i=0;i<10;i++) {
+            Integer result = restTemplate.getForEntity(serviceUrl, Integer.class).getBody();
+            System.out.println(result);
+        }
     }
 }

@@ -14,6 +14,7 @@ public class ComputerService {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public Integer add(@RequestParam Integer first, @RequestParam Integer second) {
+        System.out.println("i am execute");
         return first + second;
     }
 }
