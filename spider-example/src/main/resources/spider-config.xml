@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spider>
+    <properties>
+        <property name="" value=""></property>
+    </properties>
+    <messageQueue size="" classname=""></messageQueue>
+    <threads>
+        <thread name="" classname="" size="" is_use=""></thread>
+    </threads>
+</spider>
