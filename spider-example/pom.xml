@@ -15,9 +15,16 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <httpclient-version>4.4.1</httpclient-version>
+        <httpclient-version>4.5.3</httpclient-version>
         <commons-collections-version>3.2.1</commons-collections-version>
-        <log4j2-version>2.6.2</log4j2-version>
+        <!--<log4j2-version>2.6.2</log4j2-version> -->
+        <commons-io-version>2.4</commons-io-version>
+        <jsoup-version>1.10.2</jsoup-version>
+        <commons-lang-version>3.4</commons-lang-version>
+        <jackson-version>1.9.13</jackson-version>
+        <htmlunit-version>2.24</htmlunit-version>
+        <curator-version>2.11.1</curator-version>
+        <xstream-version>1.4.9</xstream-version>
     </properties>
 
     <dependencies>
@@ -34,22 +41,67 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpcore</artifactId>
-            <version>${httpclient-version}</version>
+            <version>4.4.6</version>
         </dependency>
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
             <version>${commons-collections-version}</version>
         </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.apache.logging.log4j</groupId>-->
+        <!--<artifactId>log4j-core</artifactId>-->
+        <!--<version>${log4j2-version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.apache.logging.log4j</groupId>-->
+        <!--<artifactId>log4j-api</artifactId>-->
+        <!--<version>${log4j2-version}</version>-->
+        <!--</dependency>-->
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>${log4j2-version}</version>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io-version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>${log4j2-version}</version>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>${jackson-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>${curator-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>${curator-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>${xstream-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.htmlunit</groupId>
+            <artifactId>htmlunit</artifactId>
+            <version>2.24</version>
         </dependency>
     </dependencies>
 </project>

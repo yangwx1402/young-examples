@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss z} %-5level %class{36} %L %M ||| %msg%xEx%n" />
+        </Console>
+        <RollingFile name="operlog" fileName="/data/bdp/logs/bdp.log" filePattern="/data/bdp/logs/bdp-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="%msg%xEx%n" />
+            - <Policies>
+            <TimeBasedTriggeringPolicy modulate="true" interval="1" />
+        </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingFile>
+        <RollingFile name="debuglog" fileName="/data/bdp/logs/debug.log" filePattern="/data/bdp/logs/debug-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss z} %-5level %class{36} %L %M ||| %msg%xEx%n" />
+            - <Policies>
+            <TimeBasedTriggeringPolicy modulate="true" interval="1" />
+        </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingFile>
+    </appenders>
+    <loggers>
+
+        <logger name="bdp.operlog" level="info" additivity="false">
+            <appender-ref ref="operlog"/>
+            <appender-ref ref="Console"/>
+        </logger>
+        <root level="debug">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="debuglog"/>
+        </root>
+    </loggers>
+</configuration>
