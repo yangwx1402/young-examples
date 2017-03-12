@@ -15,7 +15,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <zookeeper-version>3.4.6</zookeeper-version>
+        <zookeeper-version>3.5.1-alpha</zookeeper-version>
+        <curator-version>3.2.1</curator-version>
     </properties>
 
     <dependencies>
@@ -24,11 +25,37 @@
             <artifactId>zookeeper</artifactId>
             <version>${zookeeper-version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.young.java.examples</groupId>
             <artifactId>common-example</artifactId>
             <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>${curator-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.curator</groupId>
+                    <artifactId>curator-client</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-client</artifactId>
+            <version>${curator-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>${curator-version}</version>
         </dependency>
     </dependencies>
 </project>
