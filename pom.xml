@@ -35,6 +35,7 @@
         <module>spring-boot-examples</module>
         <module>voice-recognized-example</module>
         <module>spider-example</module>
+        <module>image-example</module>
     </modules>
     <packaging>pom</packaging>
 
