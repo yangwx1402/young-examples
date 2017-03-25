@@ -1,0 +1,45 @@
+Manifest-Version: 1.0
+Bundle-Description: Javassist (JAVA programming ASSISTant) makes Java 
+ bytecode manipulation    simple.  It is a class library for editing b
+ ytecodes in Java.
+Bundle-License: http://www.mozilla.org/MPL/MPL-1.1.html, http://www.gn
+ u.org/licenses/lgpl-2.1.html, http://www.apache.org/licenses/
+Bundle-SymbolicName: javassist
+Built-By: smarlow
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1435234169221
+Specification-Vendor: Shigeru Chiba, www.javassist.org
+Specification-Title: Javassist
+Bundle-Vendor: Shigeru Chiba, www.javassist.org
+Tool: Bnd-0.0.357
+Premain-Class: com.young.java.examples.jvm.instrumentation.PeopleAgent
+Export-Package: javassist.convert;uses:="javassist.bytecode.analysis,j
+ avassist.bytecode,javassist";version="3.20.0.GA",javassist.tools;uses
+ :="javassist,javassist.bytecode,javassist.bytecode.analysis";version=
+ "3.20.0.GA",javassist.tools.reflect;uses:="javassist,javassist.byteco
+ de";version="3.20.0.GA",javassist.expr;uses:="javassist.compiler,java
+ ssist.bytecode,javassist.compiler.ast,javassist";version="3.20.0.GA",
+ javassist.tools.rmi;uses:="javassist.tools.web,javassist";version="3.
+ 20.0.GA",javassist.util;version="3.20.0.GA",javassist.bytecode.analys
+ is;uses:="javassist.bytecode,javassist,javassist.bytecode.stackmap";v
+ ersion="3.20.0.GA",javassist.bytecode.annotation;uses:="javassist.byt
+ ecode,javassist";version="3.20.0.GA",javassist.bytecode.stackmap;uses
+ :="javassist.bytecode,javassist";version="3.20.0.GA",javassist.util.p
+ roxy;uses:="javassist.bytecode,javassist";version="3.20.0.GA",javassi
+ st.compiler;uses:="javassist.bytecode,javassist,javassist.compiler.as
+ t";version="3.20.0.GA",javassist.runtime;version="3.20.0.GA",javassis
+ t.bytecode;uses:="javassist.bytecode.annotation,javassist,javassist.b
+ ytecode.stackmap";version="3.20.0.GA",javassist.scopedpool;uses:=java
+ ssist;version="3.20.0.GA",javassist.compiler.ast;uses:="javassist.com
+ piler,javassist";version="3.20.0.GA",javassist;uses:="javassist.compi
+ ler,javassist.bytecode,javassist.convert,javassist.expr,javassist.byt
+ ecode.annotation,javassist.compiler.ast";version="3.20.0.GA",javassis
+ t.tools.web;uses:=javassist;version="3.20.0.GA"
+Bundle-Version: 3.20.0.GA
+Bundle-Name: Javassist
+Ignore-Package: com.sun.jdi.event,com.sun.jdi,com.sun.jdi.request,com.
+ sun.jdi.connect
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_45
+Specification-Version: 3.20.0-GA
+
