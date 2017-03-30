@@ -12,4 +12,6 @@ public interface Dao {
     void update(String user) throws DaoException;
 
     String get(String user) throws DaoException;
+
+
 }

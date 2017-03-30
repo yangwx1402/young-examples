@@ -28,7 +28,7 @@ public class UserEnhancerExample {
         Dao dao = (Dao) UserEnhancerExample.getProxy(UserDao.class);
         dao.get("111");
         dao.add("yyy");
-        dao.update("11");
+       // dao.update("11");
         dao.delete("11");
     }
 }
