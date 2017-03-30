@@ -12,7 +12,8 @@ Specification-Vendor: Shigeru Chiba, www.javassist.org
 Specification-Title: Javassist
 Bundle-Vendor: Shigeru Chiba, www.javassist.org
 Tool: Bnd-0.0.357
-Premain-Class: com.young.java.examples.jvm.instrumentation.PeopleAgent
+Premain-Class: com.young.java.examples.jvm.instrumentation.statical.PeopleAgent
+Agent-Class: com.young.java.examples.jvm.instrumentation.statical.PeopleAgent
 Export-Package: javassist.convert;uses:="javassist.bytecode.analysis,j
  avassist.bytecode,javassist";version="3.20.0.GA",javassist.tools;uses
  :="javassist,javassist.bytecode,javassist.bytecode.analysis";version=

@@ -1,4 +1,4 @@
-package com.young.java.examples.jvm.instrumentation;
+package com.young.java.examples.jvm.instrumentation.statical;
 
 import javassist.ClassPool;
 import javassist.CtClass;
