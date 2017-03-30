@@ -36,6 +36,7 @@
         <module>voice-recognized-example</module>
         <module>spider-example</module>
         <module>image-example</module>
+        <module>proxy-example</module>
     </modules>
     <packaging>pom</packaging>
 
