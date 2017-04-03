@@ -1,7 +1,5 @@
 package com.young.java.examples.servlet;
 
-import com.young.java.examples.classifier.NativeBayes;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +24,6 @@ public class BootMllibServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        NativeBayes bayes = new NativeBayes();
-        bayes.runBayes();
+
     }
 }

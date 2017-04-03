@@ -21,7 +21,6 @@
         <module>zookeeper-example</module>
         <module>hadoop-example</module>
         <module>sqlparser-example</module>
-        <module>mllib-example</module>
         <module>servlet-example</module>
         <module>spring-boot-example</module>
         <module>kafka-example</module>
@@ -33,10 +32,10 @@
         <module>log2j4-example</module>
         <module>log-coll-example</module>
         <module>spring-boot-examples</module>
-        <module>voice-recognized-example</module>
         <module>spider-example</module>
         <module>image-example</module>
         <module>proxy-example</module>
+        <module>log-example</module>
     </modules>
     <packaging>pom</packaging>
 
