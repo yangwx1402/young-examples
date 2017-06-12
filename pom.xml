@@ -36,6 +36,8 @@
         <module>image-example</module>
         <module>proxy-example</module>
         <module>log-example</module>
+        <module>mesos-example</module>
+        <module>http-example</module>
     </modules>
     <packaging>pom</packaging>
 
