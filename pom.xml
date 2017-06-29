@@ -38,6 +38,8 @@
         <module>log-example</module>
         <module>mesos-example</module>
         <module>http-example</module>
+        <module>transaction-example</module>
+        <module>design-pattern</module>
     </modules>
     <packaging>pom</packaging>
 
