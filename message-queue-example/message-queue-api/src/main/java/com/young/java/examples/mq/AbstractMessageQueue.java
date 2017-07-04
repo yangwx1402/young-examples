@@ -1,23 +1,17 @@
 package com.young.java.examples.mq;
 
+import java.util.Properties;
+
 /**
  * Created by yangyong3 on 2017/7/3.
  */
 public abstract class AbstractMessageQueue<T> implements MessageQueue<T>{
     protected String queueName;
 
-    protected int timeout = 10000;
+    protected Properties config;
 
-    protected String url;
-
-    public AbstractMessageQueue(String url, String queueName) {
-        this.url = url;
+    public AbstractMessageQueue(String queueName,Properties properties) {
         this.queueName = queueName;
-    }
-
-    public AbstractMessageQueue(String queueName, int timeout, String url) {
-        this.queueName = queueName;
-        this.timeout = timeout;
-        this.url = url;
+        this.config = properties;
     }
 }

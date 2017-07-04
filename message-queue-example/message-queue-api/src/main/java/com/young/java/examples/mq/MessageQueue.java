@@ -13,4 +13,8 @@ public interface MessageQueue<T> {
     T receive() throws MessageQueueException;
 
     Collection<T> receive(int size) throws MessageQueueException;
+
+    void destory() throws MessageQueueException;
+
+    int size() throws MessageQueueException;
 }
