@@ -7,15 +7,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>message-queue-example</artifactId>
+    <artifactId>serializable-examples</artifactId>
     <packaging>pom</packaging>
 
-    <name>message-queue-example</name>
+    <name>serializable-examples</name>
     <url>http://maven.apache.org</url>
     <modules>
-        <module>message-queue-api</module>
-        <module>activemq-example</module>
-        <module>rocketmq-example</module>
+        <module>serializable-api</module>
+        <module>serializable-json</module>
+        <module>serializable-java</module>
+        <module>serializable-kyro</module>
     </modules>
 
     <properties>
@@ -24,9 +25,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-core</artifactId>
-            <version>5.7.0</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

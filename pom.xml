@@ -41,6 +41,8 @@
         <module>transaction-example</module>
         <module>design-pattern</module>
         <module>message-queue-example</module>
+        <module>mockito-example</module>
+        <module>serializable-examples</module>
     </modules>
     <packaging>pom</packaging>
 

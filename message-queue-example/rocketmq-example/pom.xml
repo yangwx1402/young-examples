@@ -1,22 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>young-examples</artifactId>
+        <artifactId>message-queue-example</artifactId>
         <groupId>com.young.java.examples</groupId>
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>message-queue-example</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>rocketmq-example</artifactId>
+    <packaging>jar</packaging>
 
-    <name>message-queue-example</name>
+    <name>rocketmq-example</name>
     <url>http://maven.apache.org</url>
-    <modules>
-        <module>message-queue-api</module>
-        <module>activemq-example</module>
-        <module>rocketmq-example</module>
-    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,9 +19,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-core</artifactId>
-            <version>5.7.0</version>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>4.1.0-incubating</version>
+        </dependency>
+        <dependency>
+            <groupId>com.young.java.examples</groupId>
+            <artifactId>message-queue-api</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 </project>
