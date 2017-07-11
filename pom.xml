@@ -43,6 +43,7 @@
         <module>message-queue-example</module>
         <module>mockito-example</module>
         <module>serializable-examples</module>
+        <module>asyn-callback-example</module>
     </modules>
     <packaging>pom</packaging>
 

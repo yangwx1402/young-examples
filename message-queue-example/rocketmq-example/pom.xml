@@ -28,5 +28,15 @@
             <artifactId>message-queue-api</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.young.java.examples</groupId>
+            <artifactId>serializable-java</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.young.java.examples</groupId>
+            <artifactId>serializable-json</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 </project>
