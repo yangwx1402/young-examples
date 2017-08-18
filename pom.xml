@@ -44,6 +44,7 @@
         <module>serializable-examples</module>
         <module>asyn-callback-example</module>
         <module>java18-example</module>
+        <module>guava-example</module>
     </modules>
     <packaging>pom</packaging>
 
