@@ -45,6 +45,7 @@
         <module>asyn-callback-example</module>
         <module>java18-example</module>
         <module>guava-example</module>
+        <module>young-examples-commons</module>
     </modules>
     <packaging>pom</packaging>
 
