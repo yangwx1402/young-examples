@@ -1,14 +1,17 @@
 package com.young.examples.common.encode;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.UUID;
 
+import com.google.common.hash.Hashing;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
-
-import com.google.common.hash.Hashing;
 
 public class EncodeUtils {
 
