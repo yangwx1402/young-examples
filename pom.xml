@@ -46,6 +46,7 @@
         <module>java18-example</module>
         <module>guava-example</module>
         <module>young-examples-commons</module>
+        <module>selenium-example</module>
     </modules>
     <packaging>pom</packaging>
 
