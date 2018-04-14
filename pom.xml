@@ -45,9 +45,9 @@
         <module>asyn-callback-example</module>
         <module>java18-example</module>
         <module>guava-example</module>
-        <module>young-examples-commons</module>
         <module>selenium-example</module>
         <module>android-test</module>
+        <module>lock-example</module>
     </modules>
     <packaging>pom</packaging>
 
