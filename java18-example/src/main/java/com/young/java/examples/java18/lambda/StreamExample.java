@@ -88,5 +88,6 @@ public class StreamExample {
         StreamExample.stream2Array();
         StreamExample.stream2Collection();
         StreamExample.ioStream2Stream();
+        System.out.println(15622+2908+25+4742+2315+17102+5213+544+11761+1193+53+1455);
     }
 }

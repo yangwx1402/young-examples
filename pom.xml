@@ -47,6 +47,7 @@
         <module>guava-example</module>
         <module>young-examples-commons</module>
         <module>selenium-example</module>
+        <module>android-test</module>
     </modules>
     <packaging>pom</packaging>
 
