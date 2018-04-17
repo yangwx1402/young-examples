@@ -1,6 +1,6 @@
-package com.young.java.examples.singlelock.concrruent;
+package com.young.java.examples.singlelock.concrruent.lock;
 
-import com.young.java.examples.singlelock.concrruent.thread.LockMethodThread;
+import com.young.java.examples.singlelock.concrruent.lock.thread.LockMethodThread;
 
 /**
  * @author shazam

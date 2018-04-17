@@ -1,4 +1,4 @@
-package com.young.java.examples.singlelock.concrruent.thread;
+package com.young.java.examples.singlelock.concrruent.lock.thread;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
