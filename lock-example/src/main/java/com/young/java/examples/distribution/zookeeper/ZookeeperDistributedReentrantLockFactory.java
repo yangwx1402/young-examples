@@ -48,19 +48,20 @@ public class ZookeeperDistributedReentrantLockFactory {
         }
     }
 
-    public static ZookeeperDistributedReentrantLock createLock(String lockKey) {
-        return new ZookeeperDistributedReentrantLock(lockKey);
+    public static ZookeeperDistributedReentrantLock createLock(String lockPath) {
+        return new ZookeeperDistributedReentrantLock(lockPath);
     }
 
     public static class ZookeeperDistributedReentrantLock implements Lock {
 
-        private String lockKey;
+        private String lockPath;
 
         private InterProcessMutex processMutex;
 
-        public ZookeeperDistributedReentrantLock(String lockKey) {
-            this.lockKey = lockKey;
-            processMutex = new InterProcessMutex(curatorFramework, BASE_ZOOKEEPER_LOCK_PATH + File.separator + lockKey);
+        public ZookeeperDistributedReentrantLock(String lockPath) {
+            this.lockPath = lockPath;
+            processMutex = new InterProcessMutex(curatorFramework,
+                BASE_ZOOKEEPER_LOCK_PATH + File.separator + lockPath);
         }
 
         private void checkState() {
