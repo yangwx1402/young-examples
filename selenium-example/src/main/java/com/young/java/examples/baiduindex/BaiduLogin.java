@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +18,7 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 /**
  * @author shazam
@@ -49,18 +51,18 @@ public final class BaiduLogin {
 
     private static final String DEFAULT_COOKIE_PATH = BaiduLogin.class.getResource("/").getPath();
 
-    private boolean loginSuccess(WebDriver webDriver) {
+    private boolean loginSuccess(WebDriver webDriver) throws InterruptedException {
         webDriver.get(BAIDU_LOGIN_SUCCESS_PAGE);
         webDriver.manage().timeouts().implicitlyWait(DEFAULT_WAIT_WEB_LOAD, TimeUnit.SECONDS);
         String title = webDriver.getTitle();
-        System.out.println(title);
         return (title != null && title.contains("帐号设置"));
     }
 
     public WebDriver login(String username, String password)
         throws Exception {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.manage().window().fullscreen();
+        //WebDriver webDriver = new ChromeDriver();
+        WebDriver webDriver = new PhantomJSDriver();
+        //webDriver.manage().window().fullscreen();
         webDriver.manage().timeouts().implicitlyWait(DEFAULT_WAIT_WEB_LOAD, TimeUnit.SECONDS);
         String path = DEFAULT_COOKIE_PATH + "_" + username + "cookies";
         Set<Cookie> cookies = readCookie(path);
@@ -102,7 +104,32 @@ public final class BaiduLogin {
 
         WebElement submitElement = webDriver.findElement(By.id(BAIDU_FORM_SUBMIT_ID));
         submitElement.submit();
-
+        Thread.sleep(5000);
+        String title = webDriver.getTitle();
+        if ((title != null && title.contains("帐号设置"))) {
+            return;
+        } else {
+            WebElement errorMessageElement = webDriver.findElement(By.id("TANGRAM__PSP_3__error"));
+            if (errorMessageElement != null) {
+                if (errorMessageElement.getText().contains("登录失败,请在弹出的窗口操作,或重新登录")) {
+                    Thread.sleep(5000);
+                    WebElement sendPhoneElement = webDriver.findElement(By.id("TANGRAM__22__button_send_mobile"));
+                    sendPhoneElement.click();
+                    Scanner scanner = new Scanner(System.in);
+                    System.out.println("请输入手机验证码:");
+                    String phoneCode = scanner.nextLine();
+                    WebElement sendCodeElement = webDriver.findElement(By.id("TANGRAM__22__input_label_vcode"));
+                    sendCodeElement.click();
+                    Thread.sleep(5000);
+                    WebElement contentCodeElement = webDriver.findElement(By.id("TANGRAM__22__input_vcode"));
+                    contentCodeElement.sendKeys(phoneCode);
+                    Thread.sleep(5000);
+                    WebElement phoneConfirmElement = webDriver.findElement(By.id("TANGRAM__22__button_submit"));
+                    phoneConfirmElement.click();
+                    Thread.sleep(5000);
+                }
+            }
+        }
     }
 
     private void saveCookie(WebDriver webDriver, String path) throws IOException {
@@ -132,6 +159,6 @@ public final class BaiduLogin {
         String[] temps = temp.split("\n");
         System.out.println(temps[0]);
         System.out.println(temps[1]);
-        System.out.println(temp.replaceAll("\n",":"));
+        System.out.println(temp.replaceAll("\n", ":"));
     }
 }
