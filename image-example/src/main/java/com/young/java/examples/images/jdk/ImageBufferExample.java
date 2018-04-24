@@ -1,11 +1,10 @@
-package com.young.java.examples.jdk;
+package com.young.java.examples.images.jdk;
 
 import sun.awt.image.ToolkitImage;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
