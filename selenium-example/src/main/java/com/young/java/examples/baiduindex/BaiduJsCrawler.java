@@ -1,34 +1,27 @@
 package com.young.java.examples.baiduindex;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
-import com.gargoylesoftware.htmlunit.BrowserVersion;
-import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+
+import com.young.java.examples.baiduindex.support.HttpResult;
+import com.young.java.examples.baiduindex.support.HttpUtils;
+import com.young.java.examples.baiduindex.support.HttpUtils.HttpMethod;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.HttpClients;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 /**
  * @author shazam
@@ -36,195 +29,79 @@ import org.jsoup.select.Elements;
  */
 public class BaiduJsCrawler {
 
-    private static final String userAgent
-        = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) "
-        + "Chrome/65.0.3325.181 Safari/537.36";
+    private HttpUtils httpUtils = new HttpUtils();
 
-    private static final RequestConfig config = RequestConfig.custom().setSocketTimeout(10000).setConnectTimeout(10000)
-        .build();
+    private static final String BAIDU_INDEX_DATA_URL
+        = "http://index.baidu.com/Interface/Newwordgraph/getIndex?region=0&startdate=%s&enddate=%s&wordlist[0]=%s";
 
-    private static HttpClientBuilder httpClientBuilder = HttpClients.custom().setUserAgent(userAgent).setMaxConnTotal(
-        100)
-        .setMaxConnPerRoute(100).setDefaultRequestConfig(config);
-
-    private static final int HTTP_OK = 200;
-
-    private static final String BAIDU_INDEX_SEARCH_URL = "http://index.baidu.com/?tpl=trend&word=%s";
-
-    private static final String BAIDU_INDEX_PARAM_ENCODE = "gb2312";
-
-    private static final String BAIDU_IDNEX_RESPONSE_ENCODE = "gb2312";
-
-    private static final String BAIDU_INDEX_RAPHAEL_JS_URL = "http://index.baidu.com/static/js/raphael.js";
-
-    private static final String BAIDU_INDEX_RES2_JS_FUNCTION_NAME = "res2Function";
-
-    private static final String cookes
+    private static final String COOKIE
         = "searchtips=1; bdshare_firstime=1504607420982; __cfduid=dc9748d62a8fe442038096baf459a96261508550928; "
         + "BAIDUID=28933BD7C1481C42D55C290E729BEEDC:FG=1; PSTM=1515773889; BIDUPSID=4C715D03A05E570761192C3B6A3CF50B;"
-        + " MCITY=-131%3A; H_PS_PSSID=1435_21109_20927; "
-        + "BDSFRCVID=nz-sJeC62Z-HALrAForYKwpeRqoCbu3TH6aoAfyVTo1r3YM2yOSEEG0Pqx8g0KubtwsaogKK0mOTH65P; "
-        + "H_BDCLCKID_SF=tJ48_CLMfC_3fP36q4rMM-LthfLX5-RLfKoEs4OF5l8"
-        + "-hxFzyMQdKx_zhp5kBbbj5GrDWhOtbCOxOKQphUQt2qK7hNQHJhcutj59bh5N3KJmqtP9bT3v5tD35pbK2-biWbRL2MbdJD5mbRO4"
-        + "-TFhD6j-Dx5; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; PSINO=2; "
-        + "Hm_lvt_d101ea4d2a5c67dab98251f0b5de24dc=1522674360,1524015739; FP_UID=184b6e3e8dd5e3418d06ca82debba084; "
-        + "BDUSS=TQxZUZjTXlyRTV-QTZ4eTR"
+        + " MCITY=-131%3A; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; "
         +
-        "-RDhGdVJuSjZwMkZvQmF2WUR5ZGtaWGV1R1pMfjVhQVFBQUFBJCQAAAAAAAAAAAEAAAAqI744eXlsb3Zla2lraQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJmi1lqZotZab; CHKFORREG=090e6a692acee8c3d919f4317c6f4a44; Hm_lpvt_d101ea4d2a5c67dab98251f0b5de24dc=1524017038";
+        "BDUSS=RQMi1"
+        +
+        "-TjVEVnUxOEl2SExsS0ZuNmdObjlGaUY1UUVQdHBOZXBOdnAwd3NFV1JiQVFBQUFBJCQAAAAAAAAAAAEAAAAqI744eXlsb3Zla2lraQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACyEPFsshDxbdV; H_PS_PSSID=1435_26260_21109_20927; Hm_lvt_d101ea4d2a5c67dab98251f0b5de24dc=1530692637,1530942639; CHKFORREG=090e6a692acee8c3d919f4317c6f4a44; bdindexid=rr1mu4lr4nklepfbuj6qot9dp7; Hm_lpvt_d101ea4d2a5c67dab98251f0b5de24dc=1530947411; PSINO=2";
 
-    private static final WebClient webClient = new WebClient(BrowserVersion.CHROME);
+    private static final String BAIDU_INDEX_PASSWORD_URL = "http://index.baidu.com/Interface/api/ptbk?uniqid=%s";
 
-    public BaiduJsCrawler() {
-        webClient.getOptions().setJavaScriptEnabled(true); // 启动JS
-        webClient.getOptions().setUseInsecureSSL(true);//忽略ssl认证
-        webClient.getOptions().setCssEnabled(false);//禁用Css，可避免自动二次请求CSS进行渲染
-        webClient.getOptions().setThrowExceptionOnScriptError(false);//运行错误时，不抛出异常
-        webClient.setAjaxController(new NicelyResynchronizingAjaxController());
-    }
-
-    public static class Response {
-        private int code;
-
-        private String body;
-
-        public Response(int code, String body) {
-            this.body = body;
-            this.code = code;
-        }
-
-        public int getCode() {
-            return code;
-        }
-
-        public void setCode(int code) {
-            this.code = code;
-        }
-
-        public String getBody() {
-            return body;
-        }
-
-        public void setBody(String body) {
-            this.body = body;
-        }
-    }
-
-    private static Response doGet(String url, Map<String, String> header) throws IOException {
-        HttpClient client = httpClientBuilder.build();
-        HttpGet get = new HttpGet(url);
-        header.entrySet().stream().forEach(entry -> get.addHeader(entry.getKey(), entry.getValue()));
-        HttpResponse httpResponse = client.execute(get);
-        return new Response(httpResponse.getStatusLine().getStatusCode(),
-            IOUtils.toString(httpResponse.getEntity().getContent(), BAIDU_IDNEX_RESPONSE_ENCODE));
-    }
-
-    private static final Map<String, String> getHeader() {
-        Map<String, String> header = new HashMap();
-        header.put("Host", "index.baidu.com");
-        header.put("Cache-Control", "max-age=0");
-        header.put("Upgrade-Insecure-Requests", "1");
-        header.put("User-Agent", userAgent);
-        header.put("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
-        header.put("Referer", "http://index.baidu.com/");
-        header.put("Accept-Language", "zh-CN,zh;q=0.9,en;q=0.8");
-        header.put("Cookie", cookes);
+    private Map<String, String> getHeader(String cookie) {
+        Map<String, String> header = new HashMap<>();
+        Optional.ofNullable(COOKIE).filter(StringUtils::isNotBlank).ifPresent(value -> header.put("Cookie", value));
         return header;
     }
 
-    public static void searchIndex(String keyword) throws IOException, ScriptException, NoSuchMethodException {
-        String searchUrl = String.format(BAIDU_INDEX_SEARCH_URL, URLEncoder.encode(keyword, BAIDU_INDEX_PARAM_ENCODE));
-        Response response = doGet(searchUrl, getHeader());
-        if (response.getCode() == HTTP_OK) {
-            Document document = Jsoup.parse(response.getBody());
-            System.out.println(findRes(document));
-            System.out.println(findRes2(document));
+    public String getIndexData(String startDate, String endDate, String keyword)
+        throws IOException, ScriptException, NoSuchMethodException {
+        String indexUrl = String.format(BAIDU_INDEX_DATA_URL, startDate, endDate, keyword);
+        Map<String, String> header = getHeader(COOKIE);
+        HttpResult httpResult = httpUtils.sendRequest(indexUrl, HttpMethod.GET, header, null);
+        InputStream dataStream = Optional.ofNullable(httpResult).map(HttpResult::getStream).orElse(null);
+        String dataString = IOUtils.toString(dataStream, "utf-8");
+        JSONObject indexDataJson = Optional.ofNullable(dataString).filter(StringUtils::isNotBlank).map(
+            JSON::parseObject).orElse(null);
+        String uniqid = Optional.ofNullable(indexDataJson).map(json -> json.getString("uniqid")).orElse(null);
+        String passwordString = Optional.ofNullable(uniqid).map(this::getPasswordString).orElse(null);
+        InputStream jsFileStream = BaiduJsCrawler.class.getResourceAsStream("/baidu.js");
+        String resultString = executeJs(jsFileStream, "decode", dataString, passwordString);
+        return resultString;
+    }
+
+    public String getPasswordString(String uniqid) {
+        try {
+            String passwordUrl = String.format(BAIDU_INDEX_PASSWORD_URL, uniqid);
+            Map<String, String> header = getHeader(COOKIE);
+            HttpResult httpResult = httpUtils.sendRequest(passwordUrl, HttpMethod.GET, header, null);
+            InputStream dataStream = Optional.ofNullable(httpResult).map(HttpResult::getStream).orElse(null);
+            String dataString = IOUtils.toString(dataStream, "utf-8");
+            return dataString;
+        } catch (Exception e) {
+            return null;
         }
     }
 
-    private static String findRes(Document document) {
-        Elements elements = document.getElementsByTag("script");
-        if (elements != null && elements.size() > 0) {
-            for (Element element : elements) {
-                String content = element.data();
-                if (content.contains("BID.fnsDate.adjust")) {
-                    int start = content.indexOf("'");
-                    int end = content.indexOf("'", start + 1);
-                    return content.substring(start + 1, end);
-                }
-            }
-        }
-        return null;
-    }
-
-    private static String findRes2(Document document) throws IOException, ScriptException, NoSuchMethodException {
-        String res2Js = findJs(document);
-        String cleanJs = cleanRes2Js(res2Js);
-        String raphaelJs = getRaphaelJs();
-        String res2 = executeJs(raphaelJs, cleanJs);
-        return res2;
-    }
-
-    private static String executeJs(String raphaelJs, String cleanJs) throws ScriptException, NoSuchMethodException {
+    public static <T> T executeJs(InputStream stream, String method, Object... args)
+        throws FileNotFoundException, ScriptException, NoSuchMethodException, UnsupportedEncodingException {
+        //创建一个脚本引擎管理器
         ScriptEngineManager manager = new ScriptEngineManager();
+        //获取一个指定的名称的脚本引擎
         ScriptEngine engine = manager.getEngineByName("js");
-        System.out.println(cleanJs);
-        engine.eval(cleanJs);
+        // FileReader的参数为所要执行的js文件的路径
+        engine.eval(new InputStreamReader(stream, "utf-8"));
         if (engine instanceof Invocable) {
-            Invocable invoke = (Invocable)engine;
-            return (String)invoke.invokeFunction(BAIDU_INDEX_RES2_JS_FUNCTION_NAME);
-        }
-        return null;
-    }
-
-    private static String cleanRes2Js(String res2Js) {
-        String temp = res2Js.replaceAll("T\\(function \\(\\) \\{", "").replaceAll("BID.res2\\(\\/\\\\/\\/\\);", "")
-            .replaceAll(
-                "BID.scroll_resize\\(\\);", "").replaceAll(
-                "BID.placehold\\('#schword', \\{cssText: 'padding:9px 40px;color:#d8d8d8;font-size:16px;"
-                    + "_padding-top:8px;'}\\);",
-                "").replaceAll("", "");
-        temp = remove(temp, "BID.newSuggestion", "});");
-        temp = remove(temp,"T(","});");
-        temp = remove(temp,"T(","});");
-        temp = temp.replaceAll("BID.crAdvPannel\\(\\);","");
-        temp = temp.replaceAll("BID.fillAdvPannel\\(\\);","");
-        temp = temp.replaceAll("BID.splitWord\\(\\);","");
-
-        temp = remove(temp,"BID.dataBanner","});");
-        temp = remove(temp,"if ( $('#compTab li.curr').index() === 1 )","});");
-        temp = remove(temp,"BID.evts.care","});");
-        return temp;
-
-    }
-
-    private static String remove(String temp, String prefix, String subfix) {
-        int start = temp.indexOf(prefix);
-        int end = temp.indexOf(subfix);
-        String tt = temp.substring(start, end + subfix.length());
-        temp = StringUtils.remove(temp, tt);
-        return temp;
-    }
-
-    private static String findJs(Document document) {
-        Elements elements = document.getElementsByTag("script");
-        if (elements != null && elements.size() > 0) {
-            for (Element element : elements) {
-                String content = element.data();
-                if (content.contains("BID.res2")) {
-                    return content;
-                }
+            //从脚本引擎中返回一个给定接口的实现
+            if (engine instanceof Invocable) {
+                Invocable invoke = (Invocable)engine;
+                return (T)invoke.invokeFunction(method, args);
             }
         }
         return null;
     }
 
-    private static String getRaphaelJs() throws IOException {
-        Response response = doGet(BAIDU_INDEX_RAPHAEL_JS_URL, getHeader());
-        if (response.getCode() == HTTP_OK) { return response.getBody(); } else { return null; }
-    }
-
-    public static void main(String[] args) throws IOException, ScriptException, NoSuchMethodException {
-        searchIndex("黑豹");
+    public static void main(String[] args) throws NoSuchMethodException, ScriptException, IOException {
+        BaiduJsCrawler crawler = new BaiduJsCrawler();
+        String result = crawler.getIndexData("20180701","20180706","黑豹");
+        System.out.println(result);
     }
 
 }

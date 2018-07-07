@@ -100,8 +100,8 @@ public class BaiduIndexCrawler {
         throws Exception {
         System.setProperty("webdriver.chrome.driver", "/Users/user/yangyong/dev/chromedriver/chromedriver");
         BaiduIndexCrawler indexCrawler = new BaiduIndexCrawler();
-        String username = "xxx";
-        String password = "xxx";
+        String username = "18612259245";
+        String password = "7041540abc";
         BaiduLogin login = new BaiduLogin();
         WebDriver webDriver = login.login(username, password);
         List<String> keywords = Arrays.asList("前任3",

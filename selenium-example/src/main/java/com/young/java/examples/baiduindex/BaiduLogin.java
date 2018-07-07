@@ -60,9 +60,9 @@ public final class BaiduLogin {
 
     public WebDriver login(String username, String password)
         throws Exception {
-        //WebDriver webDriver = new ChromeDriver();
-        WebDriver webDriver = new PhantomJSDriver();
-        //webDriver.manage().window().fullscreen();
+        WebDriver webDriver = new ChromeDriver();
+        //WebDriver webDriver = new PhantomJSDriver();
+        webDriver.manage().window().fullscreen();
         webDriver.manage().timeouts().implicitlyWait(DEFAULT_WAIT_WEB_LOAD, TimeUnit.SECONDS);
         String path = DEFAULT_COOKIE_PATH + "_" + username + "cookies";
         Set<Cookie> cookies = readCookie(path);
